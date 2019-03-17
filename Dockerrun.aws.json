@@ -19,7 +19,7 @@
           "containerPort": 80
         }
       ],
-      "links": ["api1", "api2"],
+      "links": ["api1"],
       "memory": 128
     }
   ]
