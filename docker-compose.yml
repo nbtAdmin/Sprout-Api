@@ -12,30 +12,30 @@ services:
       - MONGO_URI=mongodb://okarimdev:1234qwer@ds161285.mlab.com:61285/backend-api-dev
       - PORT=5000
       - INSTANCE=server1
-  api2:
-    build:
-      dockerfile: Dockerfile
-      context: ./api
-    volumes:
-      - /app/node_modules
-      - ./api:/app
-    environment:
-      - NODE_ENV=staging
-      - MONGO_URI=mongodb://okarimdev:1234qwer@ds161285.mlab.com:61285/backend-api-dev
-      - PORT=5000
-      - INSTANCE=server2
-  api3:
-    build:
-      dockerfile: Dockerfile
-      context: ./api
-    volumes:
-      - /app/node_modules
-      - ./api:/app
-    environment:
-      - NODE_ENV=staging
-      - MONGO_URI=mongodb://okarimdev:1234qwer@ds161285.mlab.com:61285/backend-api-dev
-      - PORT=5000
-      - INSTANCE=server3
+  # api2:
+  #   build:
+  #     dockerfile: Dockerfile
+  #     context: ./api
+  #   volumes:
+  #     - /app/node_modules
+  #     - ./api:/app
+  #   environment:
+  #     - NODE_ENV=staging
+  #     - MONGO_URI=mongodb://okarimdev:1234qwer@ds161285.mlab.com:61285/backend-api-dev
+  #     - PORT=5000
+  #     - INSTANCE=server2
+  # api3:
+  #   build:
+  #     dockerfile: Dockerfile
+  #     context: ./api
+  #   volumes:
+  #     - /app/node_modules
+  #     - ./api:/app
+  #   environment:
+  #     - NODE_ENV=staging
+  #     - MONGO_URI=mongodb://okarimdev:1234qwer@ds161285.mlab.com:61285/backend-api-dev
+  #     - PORT=5000
+  #     - INSTANCE=server3
   nginx:
     restart: always
     build:
@@ -43,7 +43,7 @@ services:
       context: ./nginx
     links:
       - api1
-      - api2
-      - api3
+      # - api2
+      # - api3
     ports:
       - "80:80"
