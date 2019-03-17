@@ -6,21 +6,7 @@
       "image": "nbtadmin/sprout-api",
       "hostname": "api",
       "essential": false,
-      "memory": 256
-    },
-    {
-      "name": "api2",
-      "image": "nbtadmin/sprout-api",
-      "hostname": "api",
-      "essential": false,
-      "memory": 256
-    },
-    {
-      "name": "api3",
-      "image": "nbtadmin/sprout-api",
-      "hostname": "api",
-      "essential": false,
-      "memory": 256
+      "memory": 384
     },
     {
       "name": "nginx",
@@ -33,8 +19,8 @@
           "containerPort": 80
         }
       ],
-      "links": ["api1", "api2", "api3"],
-      "memory": 256
+      "links": ["api1", "api2"],
+      "memory": 128
     }
   ]
 }
