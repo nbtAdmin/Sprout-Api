@@ -17,9 +17,7 @@ deploy:
   provider: elasticbeanstalk
   region: us-east-2
   on :
-    branches: 
-      only:
-        - develop
+    branch: develop
   app: SproutDev
   env: SproutDevApi
   bucket_name: elasticbeanstalk-us-east-2-780000951144
