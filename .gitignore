@@ -124,9 +124,9 @@ typings/
 # Ignore all local history of files
 .history
 
-./api/dist
+api/dist
 
-./api/node_modules
+api/node_modules
 
 # End of https://www.gitignore.io/api/macos,visualstudiocode,node
 
