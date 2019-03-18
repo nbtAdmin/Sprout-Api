@@ -13,5 +13,5 @@ if (
 export const PROPERTIES = {
   NODE_ENV: NODE_ENV,
   MONGO_URI: MONGO_URI,
-  PORT: process.env.PORT || 8080
+  PORT: process.env.PORT || 5000
 };
