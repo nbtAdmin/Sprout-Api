@@ -27,12 +27,12 @@ export class Server {
     );
   }
 
-  public async start(PORT, NODE_ENV, INSTANCE_ID): Promise<void> {
+  public async start(PORT, NODE_ENV): Promise<void> {
     await this._initServer();
     await this._db.initConnection();
     this._instance.build().listen(PORT, () => {
       console.log(
-        `Application initialized with env: ${NODE_ENV} with InstanceId: ${INSTANCE_ID}`
+        `Application initialized with env: ${NODE_ENV}`
       );
       console.log(`Server listening on port ${PORT}`);
     });
