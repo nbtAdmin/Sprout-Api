@@ -21,8 +21,7 @@ export class HealthCheckController {
   public getHeartBeat(@request() req: Request, @response() res: Response) {
     const data = {
       headers: req.headers,
-      address: req.connection.remoteAddress,
-      instance: PROPERTIES.INSTANCE_ID
+      address: req.connection.remoteAddress
     };
     return data;
   }

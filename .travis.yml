@@ -14,14 +14,25 @@ script:
   - docker push nbtadmin/sprout-api
 
 deploy:
-  provider: elasticbeanstalk
-  region: us-east-2
-  on :
-    branch: develop
-  app: SproutDev
-  env: SproutDevApi
-  bucket_name: elasticbeanstalk-us-east-2-780000951144
-  bucket_path: sprout-dev-env
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: $AWS_SECRET_KEY
+  - provider: elasticbeanstalk
+    region: us-east-2
+    on :
+      branch: develop
+    app: SproutDev
+    env: SproutDevApi
+    bucket_name: elasticbeanstalk-us-east-2-780000951144
+    bucket_path: sprout-dev-env
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+      secure: $AWS_SECRET_KEY
+  - provider: elasticbeanstalk
+    region: us-east-2
+    on :
+      branch: master
+    app: SproutProd
+    env: SproutProdApi
+    bucket_name: elasticbeanstalk-us-east-2-780000951144
+    bucket_path: sprout-prod-env
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+      secure: $AWS_SECRET_KEY
