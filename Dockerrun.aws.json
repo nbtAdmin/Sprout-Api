@@ -1,0 +1,26 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "api1",
+      "image": "nbtadmin/sprout-api",
+      "hostname": "api",
+      "essential": false,
+      "memory": 384
+    },
+    {
+      "name": "nginx",
+      "image": "nbtadmin/sprout-api-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["api1"],
+      "memory": 128
+    }
+  ]
+}
