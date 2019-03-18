@@ -24,7 +24,7 @@ deploy:
     on :
       branch: develop
     app: SproutDev
-    env: SproutDevApi
+    env: SproutApiDev
     bucket_name: elasticbeanstalk-us-east-2-780000951144
     bucket_path: sprout-dev-env
     access_key_id: $AWS_ACCESS_KEY
