@@ -31,9 +31,7 @@ export class Server {
     await this._initServer();
     await this._db.initConnection();
     this._instance.build().listen(PORT, () => {
-      console.log(
-        `Application initialized with env: ${NODE_ENV}`
-      );
+      console.log(`Application initialized with env: ${NODE_ENV}`);
       console.log(`Server listening on port ${PORT}`);
     });
   }
