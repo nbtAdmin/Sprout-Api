@@ -4,8 +4,9 @@ let MONGO_URI =
 
 if (
   process.env.NODE_ENV === "production" ||
-  process.env.NODE_ENV === "staging"
+  process.env.NODE_ENV === "develop"
 ) {
+  console.log(`loading config for environment: ${process.env.NODE_ENV}`);
   NODE_ENV = process.env.NODE_ENV;
   MONGO_URI = process.env.MONGO_URI;
 }
@@ -13,5 +14,5 @@ if (
 export const PROPERTIES = {
   NODE_ENV: NODE_ENV,
   MONGO_URI: MONGO_URI,
-  PORT: process.env.PORT || 5000
+  PORT: process.env.PORT || 8080
 };
