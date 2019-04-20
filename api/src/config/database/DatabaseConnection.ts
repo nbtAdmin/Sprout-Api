@@ -1,17 +1,20 @@
-import * as mongoose from "mongoose";
+import "reflect-metadata";
+import { Connection, createConnection } from "typeorm";
 import { PROPERTIES } from "../properties/Properties";
 
-export class DatabaseConnection {
-  constructor() {}
-
-  public async initConnection(): Promise<void> {
-    mongoose.connect(
-      PROPERTIES.MONGO_URI,
-      { useNewUrlParser: true },
-      (err: any) => {
-        if (err) console.log(err);
-        else console.log(`Successfully Connected to Database`);
-      }
-    );
+export const initDatabaseConnnection = async () => {
+  const conn: Connection = await createConnection({
+    type: "mongodb",
+    useNewUrlParser: true,
+    url: PROPERTIES.MONGO_URI,
+    ssl: true,
+    authSource: "admin",
+    entities: [PROPERTIES.DB.DB_ENTITIES],
+    subscribers: [PROPERTIES.DB.DB_SUBSCRIBERS],
+    migrations: [PROPERTIES.DB.DB_MIGRATIONS]
+  });
+  if (conn.isConnected) {
+    console.log(`Successfully Connected to Database: ${conn.name}`);
   }
-}
+  return conn;
+};

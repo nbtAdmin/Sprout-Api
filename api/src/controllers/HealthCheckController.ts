@@ -1,11 +1,12 @@
+import "reflect-metadata";
 import {
   controller,
   httpGet,
   request,
-  response
+  response,
+  httpPost
 } from "inversify-express-utils";
 import { Request, Response } from "express";
-import { PROPERTIES } from "../../config/properties/Properties";
 
 @controller("/health")
 export class HealthCheckController {
@@ -17,7 +18,7 @@ export class HealthCheckController {
     return apiversion;
   }
 
-  @httpGet("/hearthbeat")
+  @httpGet("/heartbeat")
   public getHeartBeat(@request() req: Request, @response() res: Response) {
     const data = {
       headers: req.headers,
