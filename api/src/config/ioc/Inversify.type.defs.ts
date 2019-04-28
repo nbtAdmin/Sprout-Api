@@ -13,7 +13,9 @@ export const TYPES_SERVICE = {
 export const TYPES_PROCESSORS = {
     EventProcessor: Symbol("EventProcessor"),
     AuthProcessor: Symbol("AuthProcessor"),
-    UserProcessor: Symbol("UserProcessor")
+    UserProcessor: Symbol("UserProcessor"),
+    DataAggregationProcessor: Symbol("DataAggregation"),
+    RenderProcessor:Symbol("RenderProcessor")
 };
 
 export const TYPES_EXTERNAL_API = {

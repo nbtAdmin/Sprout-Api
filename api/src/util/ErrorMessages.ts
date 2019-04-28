@@ -7,5 +7,6 @@ export const ERRORS = {
         "The email belonging to that account is associated with a another type of sign in",
     WRONG_PASSWORD: "Incorrect Password",
     CREATE_TOKEN_ERR: "Could not generate access token",
-    USER_CONTEXT_NOT_FOUND: "Could not get the current user context"
+    USER_CONTEXT_NOT_FOUND: "Could not get the current user context",
+    SEARCH_ERR: "Could not perform search"
 };

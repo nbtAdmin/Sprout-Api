@@ -16,7 +16,6 @@ export class UserProcessor {
         req: Request,
         res: Response
     ): Promise<Response> {
-        console.log(req.body);
         const currentUser = await this._userService.findUserByPublicId(
             req.user.publicUserId
         );

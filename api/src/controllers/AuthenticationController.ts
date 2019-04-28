@@ -35,7 +35,7 @@ export class AuthenticationController {
         @response() res: Response
     ) {
         try {
-            return this._authProcessor.getAllUsers(req, res);
+            return await this._authProcessor.getAllUsers(req, res);
         } catch (err) {
             return res
                 .status(HTTP_STATUS.INTERNAL_SERVER_ERR)

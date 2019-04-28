@@ -16,19 +16,8 @@ export class UserService {
         return this._userRepository.find({});
     }
 
-    public async createNewUser(newUser: IUserInfoDTO) {
-        const user: User = new User();
-
-        user.publicUserId = newUser.publicUserId;
-        user.email = newUser.email;
-        user.password = newUser.password;
-        user.firstName = newUser.firstName;
-        user.lastName = newUser.lastName;
-        user.phoneNumber = newUser.phoneNumber;
-        user.createdDate = newUser.createdDate;
-        user.accountType = newUser.accountType;
-
-        return this._userRepository.save(user);
+    public async createNewUser(newUser: User): Promise<User> {
+        return this._userRepository.save(newUser);
     }
 
     public async findUserByEmail(_email: string): Promise<User> {

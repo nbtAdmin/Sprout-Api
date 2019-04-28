@@ -19,12 +19,16 @@ import { AuthProcessor } from "../../processors/AuthProcessor";
 import { User } from "../../data/entities/User";
 import { UserService } from "../../data/services/UserService";
 import { UserProcessor } from "../../processors/UserProcessor";
+import { DataAggregationProcessor } from "../../processors/data/DataAggregationProcessor";
+import { RenderProcessor } from "../../processors/templates/RenderProcessor";
 
 export const asyncLoadControllers = async (): Promise<void> => {
     await require("../../controllers/HealthCheckController");
     await require("../../controllers/EventController");
     await require("../../controllers/AuthenticationController");
     await require("../../controllers/UserController");
+    await require("../../controllers/SearchController");
+    await require("../../controllers/TemplateController");
 };
 
 export const loadRepositories = (bind: interfaces.Bind) => {
@@ -59,4 +63,8 @@ export const loadProcessors = (bind: interfaces.Bind) => {
     bind<AuthProcessor>(TYPES_PROCESSORS.AuthProcessor).to(AuthProcessor);
     bind<EventProcessor>(TYPES_PROCESSORS.EventProcessor).to(EventProcessor);
     bind<UserProcessor>(TYPES_PROCESSORS.UserProcessor).to(UserProcessor);
+    bind<DataAggregationProcessor>(
+        TYPES_PROCESSORS.DataAggregationProcessor
+    ).to(DataAggregationProcessor);
+    bind<RenderProcessor>(TYPES_PROCESSORS.RenderProcessor).to(RenderProcessor);
 };

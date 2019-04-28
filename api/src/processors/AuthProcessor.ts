@@ -22,10 +22,10 @@ export class AuthProcessor {
     private readonly _userService: UserService;
 
     public async getAllUsers(req: Request, res: Response): Promise<Response> {
-        const allUsers: User[] = await this._userService.getAllUsers();
+        const AllUsers: User[] = await this._userService.getAllUsers();
         const userResponse: IUserInfoDTO[] = new Array<IUserInfoDTO>();
 
-        allUsers.forEach(user => {
+        AllUsers.forEach(user => {
             const userInfo: IUserInfoDTO = {
                 publicUserId: user.publicUserId,
                 email: user.email,
@@ -50,16 +50,16 @@ export class AuthProcessor {
                 .json({ err: ERRORS.EMAIL_CONFLICT });
         }
 
-        const newUser: IUserInfoDTO = await this.prepareNewUserRequest(
-            req.body
-        );
+        const newUser: User = await this.prepareNewUserRequest(req.body);
         if (!newUser) {
             return res
                 .status(HTTP_STATUS.INTERNAL_SERVER_ERR)
                 .json({ err: ERRORS.INTERNAL_SERVER_ERR });
         }
 
-        const registerUser = await this._userService.createNewUser(newUser);
+        const registerUser: User = await this._userService.createNewUser(
+            newUser
+        );
         if (!registerUser) {
             return res
                 .status(HTTP_STATUS.INTERNAL_SERVER_ERR)
@@ -79,19 +79,17 @@ export class AuthProcessor {
             .json({ msg: ERRORS.SUCCESS_REG_USER, user: newUserResponse });
     }
 
-    private async prepareNewUserRequest(
-        _requestBody: any
-    ): Promise<IUserInfoDTO> {
-        const newUser: IUserInfoDTO = {
-            publicUserId: uuid(),
-            email: _requestBody.email,
-            password: await bcrpyt.hash(_requestBody.password, 10),
-            firstName: _requestBody.firstName,
-            lastName: _requestBody.lastName,
-            phoneNumber: _requestBody.phoneNumber,
-            accountType: EAccountType.LOCAL,
-            createdDate: moment().format(DATE_FORMAT)
-        };
+    private async prepareNewUserRequest(_requestBody: any): Promise<User> {
+        const newUser = new User();
+
+        newUser.publicUserId = uuid();
+        newUser.email = _requestBody.email;
+        newUser.password = await bcrpyt.hash(_requestBody.password, 10);
+        newUser.firstName = _requestBody.firstName;
+        newUser.lastName = _requestBody.lastName;
+        newUser.phoneNumber = _requestBody.phoneNumber;
+        newUser.accountType = EAccountType.LOCAL;
+        newUser.createdDate = moment().format(DATE_FORMAT);
 
         return newUser;
     }
@@ -127,6 +125,7 @@ export class AuthProcessor {
                 .json({ err: ERRORS.WRONG_PASSWORD });
         }
 
+        //TODO: ADD REFRESH TOKEN IMPLEMENTATION
         const jwtToken = GenerateUserAccessToken(user.publicUserId, user.email);
         if (!jwtToken) {
             return res
