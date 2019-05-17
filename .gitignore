@@ -125,7 +125,7 @@ typings/
 .history
 
 api/dist
-
+api/src/config/properties/Properties.ts
 api/node_modules
 
 # End of https://www.gitignore.io/api/macos,visualstudiocode,node
